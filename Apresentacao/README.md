@@ -4,3 +4,4 @@ Diretório contendo todo o conteúdo de divulgações do projeto em apresentaç�
 
 * `/.`
     * **Sprint 1 - Especificação de Projeto.pptx**: Slide de apresentação de especificação do projeto, contendo os objetivos, motivação, estrutura de dados, mapa conceitual, entre outros.
+    * **Sprint 1 - Especificação de Projeto.gslides**: Arquivo de edição interna na plataforma Google Slides.
