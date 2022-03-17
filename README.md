@@ -9,7 +9,7 @@ Faz parte dos objetivos dos autores elaborar um software que contenha funcionali
 - Bernardo Souza Cardoso
 - Luisa Nogueira Campos Silva
 - Pedro Henrique Lopes Costa
-- Victor Lopes Azevedo Araújo
+- Victor Lopes Azevedo Araujo
 <br></br>
 
 ## 👨‍🏫 Professores responsáveis
