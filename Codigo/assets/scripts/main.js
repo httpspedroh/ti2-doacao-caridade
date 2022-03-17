@@ -274,8 +274,8 @@ function loadLogin()
     
     let divLoginText = document.getElementById('textLogin');
 
-    if(getUserLogged() == -1) divLoginText.innerHTML = `<a id="b_loginOrLogoff" class="header_loginBtn" href="login.html"><i class="fas fa-user"></i></i>Login</a>`;
-    else divLoginText.innerHTML = `<a id="b_loginOrLogoff" class="header_loginBtn" href="login.html"><i class="fas fa-user"></i></i>Sair</a>`;
+    if(getUserLogged() == -1) divLoginText.innerHTML = `<a id="b_loginOrLogoff" class="header_loginBtn" href="login"><i class="fas fa-user"></i></i>Login</a>`;
+    else divLoginText.innerHTML = `<a id="b_loginOrLogoff" class="header_loginBtn" href="login"><i class="fas fa-user"></i></i>Sair</a>`;
 
     let blogin = document.getElementById('b_loginOrLogoff');
 

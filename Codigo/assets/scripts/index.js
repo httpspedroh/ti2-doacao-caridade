@@ -111,7 +111,7 @@ function excluirImg()
 function setClickInst(id) 
 {
     sessionStorage.setItem('id_clickInst', id);
-    location.href = "instituicao.html";
+    location.href = "instituicao";
 }
 
 // ----------------------------------------------------------------------------------------------------------------------------------- //
