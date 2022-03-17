@@ -10,7 +10,7 @@ Faz parte dos objetivos dos autores elaborar um software que contenha funcionali
 - Luisa Nogueira Campos Silva
 - Pedro Henrique Lopes Costa
 - Victor Lopes Azevedo Araujo
-<br></br>
+<br></br>w
 
 ## 👨‍🏫 Professores responsáveis
 
