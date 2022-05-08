@@ -3,7 +3,7 @@
 Diretório contendo todo o conteúdo de apresentação da sprint 2.
 
 * `/.`
-    * **Sprint 1 - Especificação de Projeto.gslides**: Arquivo editável do slide na plataforma Google Slides.
+    * **Sprint 1 - Especificação de Projeto.gslides**: Arquivo para edição interna do slide na plataforma Google Slides.
   
     * **Sprint 1 - Especificação de Projeto.pptx**: Slide de apresentação.
   
