@@ -33,8 +33,8 @@ public class News {
 	public int getId() { return id; }
 	public int getInstId() { return inst_id; }
 	public Date getDate() { return date; }
-	public String getTitle() { return title; }
-	public String getDescription() { return description; }
+	public String getTitle() { return title.replaceAll("'", "''"); }
+	public String getDescription() { return description.replaceAll("'", "''"); }
 	public String getImageUrl() { return image_url; }
 	
 	public void setId(int id) { this.id = id; }

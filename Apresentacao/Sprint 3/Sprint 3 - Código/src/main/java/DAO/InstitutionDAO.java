@@ -104,7 +104,7 @@ public class InstitutionDAO extends DAO {
 			
 			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
 			
-			String sql = "SELECT * FROM carousel LIMIT 1 OFFSET " + index;
+			String sql = "SELECT * FROM institutions LIMIT 1 OFFSET " + index;
 			
 			ResultSet rs = st.executeQuery(sql);	
 	        

@@ -1,6 +1,5 @@
 package DAO;
 
-import model.Institution;
 import model.News;
 
 import java.sql.PreparedStatement;
@@ -60,6 +59,8 @@ public class NewsDAO extends DAO {
 		               + news.getDescription() + "', '"
 		               + news.getImageUrl() + "');";
 			
+			System.out.println(sql);
+			
 			PreparedStatement st = conexao.prepareStatement(sql);
 			
 			st.executeUpdate();
@@ -80,9 +81,8 @@ public class NewsDAO extends DAO {
 		try {
 			
 			String sql = "UPDATE news SET "
-					   + "title = '" + news.getTitle() + "' "
+					   + "title = '" + news.getTitle() + "', "
 					   + "description = '" + news.getDescription() + "' "
-					   + "image_url = '" + news.getImageUrl() + "' " 
 					   + "WHERE id = " + news.getId();
 			
 			PreparedStatement st = conexao.prepareStatement(sql);
@@ -107,9 +107,11 @@ public class NewsDAO extends DAO {
 			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
 			ResultSet rs = st.executeQuery("SELECT * FROM news WHERE inst_id = " + inst_id);
 			
+			
+			
 	        while(rs.next()) {	       
 	        	
-	        	News n = new News(rs.getInt("id"), rs.getInt("inst_id"), rs.getDate("date"), rs.getString("title"), rs.getString("description"), rs.getString("image_url"));
+	        	News n = new News(rs.getInt("id"), rs.getInt("inst_id"), rs.getTimestamp("date"), rs.getString("title"), rs.getString("description"), rs.getString("image_url"));
 	        	
 	        	news.add(n);
 	        }

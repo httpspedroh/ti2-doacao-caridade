@@ -6,13 +6,15 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.json.JSONArray;
 import DAO.NewsDAO;
+
 import model.News;
 import spark.Request;
 import spark.Response;
 
 public class NewsService {
 
-	DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+	//DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX");
+	DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
 
 	private NewsDAO newsDAO = new NewsDAO();
 
@@ -43,7 +45,7 @@ public class NewsService {
 
 	public JSONArray getAll(Request request, Response response) {
 		
-		int inst_id = Integer.parseInt(request.queryParams("inst_id"));
+		int inst_id = Integer.parseInt(request.params(":inst_id"));		
 		
 		JSONArray maior = new JSONArray();
         

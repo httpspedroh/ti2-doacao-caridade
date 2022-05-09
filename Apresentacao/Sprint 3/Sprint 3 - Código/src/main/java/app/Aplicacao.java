@@ -31,5 +31,8 @@ public class Aplicacao {
         get("/carousel/delete/:id", (request, response) -> carouselService.delete(request, response));
         
         get("/news/:inst_id", (request, response) -> newsService.getAll(request, response));
+        post("/news/insert", (request, response) -> newsService.insert(request, response));
+        post("/news/update/:id", (request, response) -> newsService.update(request, response));
+        get("/news/delete/:id", (request, response) -> newsService.delete(request, response));
     }
 }
