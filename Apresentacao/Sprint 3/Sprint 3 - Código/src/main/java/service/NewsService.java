@@ -14,7 +14,7 @@ import spark.Response;
 public class NewsService {
 
 	//DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX");
-	DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+	DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX");
 
 	private NewsDAO newsDAO = new NewsDAO();
 

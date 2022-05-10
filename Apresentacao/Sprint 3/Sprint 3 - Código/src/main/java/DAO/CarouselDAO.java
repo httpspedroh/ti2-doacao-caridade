@@ -1,8 +1,6 @@
 package DAO;
 
 import model.Carousel;
-import model.Institution;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

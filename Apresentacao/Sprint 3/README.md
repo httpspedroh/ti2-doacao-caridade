@@ -7,7 +7,9 @@ Diretório contendo todo o conteúdo de apresentação da sprint 3.
   
     * **Sprint 3 - Back-End e Especificação Sistemas de Inteligentes.pptx**: Slide de apresentação.
 
-  * **Sprint 3 - Código**: Diretório contendo o código modular da Eclipse IDE do back-end e front-end.
+    * **Sprint 3 - Código**: Diretório contendo o código modular da Eclipse IDE do back-end e front-end.
+
+    * **SQL Commands**: Diretório contendo os arquivos SQL para execução no PostgreSQL.
   
 <br/>
 

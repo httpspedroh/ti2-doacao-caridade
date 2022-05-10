@@ -59,8 +59,6 @@ public class NewsDAO extends DAO {
 		               + news.getDescription() + "', '"
 		               + news.getImageUrl() + "');";
 			
-			System.out.println(sql);
-			
 			PreparedStatement st = conexao.prepareStatement(sql);
 			
 			st.executeUpdate();
@@ -105,9 +103,7 @@ public class NewsDAO extends DAO {
 		try {
 			
 			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-			ResultSet rs = st.executeQuery("SELECT * FROM news WHERE inst_id = " + inst_id);
-			
-			
+			ResultSet rs = st.executeQuery("SELECT * FROM news WHERE inst_id = " + inst_id);			
 			
 	        while(rs.next()) {	       
 	        	

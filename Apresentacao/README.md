@@ -6,3 +6,4 @@ Diretório contendo todo o conteúdo de divulgações do projeto em apresentaç�
     * **Sprint 1**: Pasta com todo o conteúdo relacionado à Sprint 1.
     * **Sprint 2**: Pasta com todo o conteúdo relacionado à Sprint 2.
     * **Sprint 3**: Pasta com todo o conteúdo relacionado à Sprint 3.
+    * **Sprint 4**: Pasta com todo o conteúdo relacionado à Sprint 4.
