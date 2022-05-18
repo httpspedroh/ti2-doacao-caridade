@@ -9,4 +9,4 @@ Faz parte dos objetivos dos autores elaborar um software que contenha funcionali
 - Bernardo Souza Cardoso
 - Luisa Nogueira Campos Silva
 - Pedro Henrique Lopes Costa
-- Victor Lopes Azevedo Araujo
+- Victor Lopes Azevedo Araujoo
