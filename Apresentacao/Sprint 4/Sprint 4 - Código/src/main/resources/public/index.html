@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<!------------------------------------------------------------------------------------------------------------->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quem necessita?</title>
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/styles.css">
+    <script src="https://kit.fontawesome.com/97a4d5baa9.js" crossorigin="anonymous"></script>
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Jost:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Jost:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap"></noscript>
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700&display=swap"></noscript>
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap"></noscript>
+</head>
+
+<!------------------------------------------------------------------------------------------------------------->
+
+<body>
+
+    <!------------------------------------------------------------------------------------------------------------->
+
+    <header>
+        <nav>
+            <input type="checkbox" id="check">
+            <label for="check" class="checkbtn">
+                <i class="fa fa-bars"></i>
+            </label>
+            <label class="header_logo"><img src="assets/images/logo.png" alt="Logo" width="50" height="50"><span class="header_logoText">Quem necessita?</span></label>
+            <ul>
+                <li><a href="/"><i class="fas fa-home"></i>Página inicial</a></li>
+                <li><a href="/#Instituições"><i class="far fa-smile-wink"></i>Instituições</a></li>
+                <li><a href="/#Como_doar"><i class="far fa-heart"></i>Como doar</a></li>
+                <li id="textLogin"></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!------------------------------------------------------------------------------------------------------------->
+
+    <main>
+
+        <div class="modal fade" id="addImgModal" tabindex="-1" role="dialog" aria-labelledby="addImgModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addImgModalLabel">Adicionar imagem</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Adicionar">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="form_addImg">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="addImg_alt" placeholder="Texto alternativo" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="addImg_file">Imagem <small>(Recomendado: 1900x600)</small></label>
+                                <input type="file" class="form-control" id="addImg_file" required>
+                            </div>
+
+                            <button id="btn_addImg" class="btn btn_green" type="submit" onclick="addImg()">Adicionar imagem</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!------------------------------------------------------------------->
+
+        <section class="sec_fixed"></section>
+
+        <!------------------------------------------------------------------->
+
+        <section id="sid_campanhas" class="sec_campanhas">
+            <div class="camp_general">
+                <div id="campanhas" class="carousel slide" data-ride="carousel">
+                    <ol id="car_indicator" class="carousel-indicators">
+                       
+                    </ol>
+                    <div id="car_imgs" class="carousel-inner">
+                       
+                    </div>
+                    <a class="carousel-control-prev" href="#campanhas" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Anterior</span>
+                    </a>
+                    <a class="carousel-control-next" href="#campanhas" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Próximo</span>
+                    </a>
+                </div>
+            </div>
+            <div id="btns_control"></div>
+        </section>
+
+        <!------------------------------------------------------------------->
+
+        <section class="sec_comoDoar container-fluid" id="Como_doar">
+            <div class="container-fluid">
+                <div class="row">
+                    <span class="cd_title col-12">Como doar?</span>
+                </div>
+
+                <div class="cd_steps row">
+                    <span class="cd_step col-12 col-lg-4 col-xl-4 text-center">
+                        <span class="cd_circle">1</span>
+                    <h6>Identifique a instituição desejada através da nossa plataforma, visando o propósito, categoria de doação e também a sua localização.</h6>
+                    </span>
+
+                    <span class="cd_step col-12 col-lg-4 col-xl-4 text-center">
+                        <span class="cd_circle">2</span>
+                    <h6>Utilizando as informações oferecidas pela plataforma na página de instituição, entre em contato com a entidade desejada.</h6>
+                    </span>
+
+                    <span class="cd_step col-12 col-lg-4 col-xl-4 text-center">
+                        <span class="cd_circle">3</span>
+                    <h6>Após realizada a doação através dos métodos disponibilizados pela entidade, veja os resultados da sua doação no blog da página da instituição!</h6>
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!------------------------------------------------------------------->
+
+        <section class="sec_instituicoes" id="Instituições">
+            <div class="container-fluid">
+                <div class="row">
+                    <span class="inst_title col-12">Instituições disponíveis</span>
+                </div>
+
+                <div class="inst_general row">
+                    <div id="instituicoes" class="carousel slide col-12" data-ride="carousel">
+                        <div class="carousel-inner" id="inst_carrossel">
+
+                        </div>
+                        <a class="carousel-control-prev" href="#instituicoes" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Anterior</span>
+                        </a>
+                        <a class="carousel-control-next" href="#instituicoes" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Próximo</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!------------------------------------------------------------------->
+
+        <section class="sec_sobreNos" id="Sobre_nós">
+            <div class="container-fluid">
+                <div class="sobre_general row">
+                    <span class="col-12 col-lg-3 align-self-center text-center"><img src="assets/images/logo.png" alt="Logo GG" height="200" width="200"></span>
+                    <span class="col-12 col-lg-9">
+                        <h5>Sobre nós</h5>
+                        <h6>"Quem necessita?" é uma plataforma que visa auxiliar doadores a encontrar a instituição ideal para suas doações, assim como permitir que as instituições que participam do sistema ganhem mais visibilidade. Nós, desenvolvedores e administradores, acreditamos que por meios corretos e com a disposição e a força de vontade dos envolvidos, famílias em situação de vulnerabilidade social podem ser ajudadas, de acordo com sua necessidade, e assim, enfrentar mais uma batalha em suas vidas.<br><br>O projeto está sendo desenvolvido pelos alunos Bernardo Souza Cardoso, Luisa Nogueira Campos Silva, Pedro Henrique Lopes Costa, Victor Lopes Azevedo Araujo, ingressos no curso de Ciência da Computação da Pontifícia Universidade Católica de Minas Gerais - Campus Coração Eucarístico, como forma de conclusão da disciplina Trabalho Interdisciplinar de Bancos de Dados no 2º período do curso.</h6>
+                       
+                        <a class="sobre_social" href="https://github.com/httpspedroh/tibd-doacao-caridade" target="_blank"><i class="fab fa-github"></i></a>
+                        <a class="sobre_social" href="https://icei.pucminas.br" target="_blank"><i class="fas fa-globe"></i></a>
+                    </span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!------------------------------------------------------------------------------------------------------------->
+
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="footer_row row align-items-center">
+                <p class="col-12 col-md-9 d-flex justify-content-center justify-content-md-start">Desenvolvido com ❤️ - ICEI PUC Minas</b>
+                </p>
+                <span class="col-12 col-md-3 d-flex justify-content-md-end text-center text-md-right">
+                    <a href="https://icei.pucminas.br/" target="_blank"><img src="assets/images/icei.png" alt="ICEI PUC Minas"></a>
+                </span>
+            </div>
+        </div>
+    </footer>
+
+    <!------------------------------------------------------------------------------------------------------------->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <script src="assets/scripts/main.js"></script>
+    <script src="assets/scripts/index.js"></script>
+</body>
+
+</html
