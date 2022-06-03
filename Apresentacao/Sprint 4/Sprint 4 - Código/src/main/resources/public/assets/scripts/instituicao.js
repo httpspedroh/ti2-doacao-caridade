@@ -234,13 +234,15 @@ function load_newsInfo()
 {
     let text = '';
 
-    if(news[instId_Clicked].length == 0) document.getElementById('div_News').innerHTML = "<i>Nenhuma notícia encontrada.";
+    if(news.length == 0) document.getElementById('div_News').innerHTML = "<i>Nenhuma notícia encontrada.";
     else
     {
-        for(x = news[instId_Clicked].length - 1; x >= 0; x--)
+        for(x = news.length - 1; x >= 0; x--)
         {
-            let noticia = news[instId_Clicked][x];
+            let noticia = news[x];
             let dateIso = new Date(noticia.date);
+
+            console.log(noticia.date);
 
             text += `
             <div class="blog_noticia row">
@@ -280,37 +282,51 @@ function addNewNew()
 
     if(allAreFilled)
     {
+        $('#newNewModal').modal('hide');
+        
         event.preventDefault();
 
-        let addNew_imgFile = document.getElementById('newNew_img'),
-            addNew_titleInput = document.getElementById('newNew_title'),
+        let addNew_titleInput = document.getElementById('newNew_title'),
             addNew_captionInput = document.getElementById('newNew_caption');
 
-        let file_path = addNew_imgFile.files[0];
-        let fr = new FileReader(), imgResult;
-
-        fr.onloadend = function() 
-        { 
-            imgResult = fr.result; 
+        let today = new Date();
         
-            let today = new Date();
-            let newNew = 
-            {
-                "href": imgResult,
-                "titulo": addNew_titleInput.value,
-                "data": today.toISOString(),
-                "descricao": addNew_captionInput.value,
-            };
+        inst_id = instId_Clicked;
+        date = today.toISOString();
+        title = addNew_titleInput.value;
+        description = addNew_captionInput.value;
+        image_url = 'assets/images/news/new_' + (Math.floor(Math.random() * 18) + 1) + '.jpg';
 
-            news[instId_Clicked].push(newNew);
-            localStorage.setItem("inst_news", JSON.stringify(news));
+        $.ajax({
+        
+            url: 'http://localhost:6587/news/insert',
+            method: 'POST',
+            data: {
+                inst_id,
+                date,
+                title,
+                description,
+                image_url
+            },
 
-            loadNews();
+            success: function(result, json, data) { if(load_newsData() == 200) load_newsInfo(); },
+            error: function(req, status, error) {
+                
+                bootbox.alert({
+                    closeButton: false,
+                    message: `Ocorreu um erro ao criar uma nova notícia.`,
+                    size: 'small',
+                    buttons: {
+                        ok: {
+                            label: 'Fechar',
+                            className: 'btn_green'
+                        },
+                    },
+                });
+            }
+        })
 
-            $('#newNewModal').modal('hide');
-        }
-
-        fr.readAsDataURL(file_path);
+        $('#newNewModal').modal('hide');
     }
 }
 
@@ -325,8 +341,8 @@ function openEditNewModal(newid)
 { 
     sessionStorage.setItem("id_clickNew", newid);
 
-    edit_newTitle.value = news[instId_Clicked][newid].titulo;
-    edit_newCaption.value = news[instId_Clicked][newid].descricao;
+    edit_newTitle.value = news[newid].title;
+    edit_newCaption.value = news[newid].description;
 }
 
 // ----------------------------------------------------------------------------------------------------------------------------------- //
@@ -345,42 +361,39 @@ function editNew()
     {
         event.preventDefault();
         
-        let file_path = document.getElementById('editNew_img').files[0],
-            noticia = news[instId_Clicked][sessionStorage.getItem("id_clickNew")];
+        let noticia = news[sessionStorage.getItem("id_clickNew")];
 
-        if(file_path != undefined)
-        {
-            let fr = new FileReader(), imgResult;
+        title = edit_newTitle.value;
+        description = edit_newCaption.value;
+    
+        $.ajax({
+        
+            url: 'http://localhost:6587/news/update/' + noticia.id,
+            method: 'POST',
+            data: {
+                title,
+                description
+            },
 
-            fr.onloadend = function() 
-            { 
-                imgResult = fr.result; 
-
-                noticia.href = imgResult;
-                noticia.titulo = edit_newTitle.value;
-                noticia.descricao = edit_newCaption.value;
-
-                localStorage.setItem("inst_news", JSON.stringify(news));
-
-                loadNews();
-
-                $('#editNewModal').modal('hide');
+            success: function(result, json, data) { if(load_newsData() == 200) load_newsInfo(); },
+            error: function(req, status, error) {
+                
+                bootbox.alert({
+                    closeButton: false,
+                    message: `Ocorreu um erro ao salvar os dados da notícia.`,
+                    size: 'small',
+                    buttons: {
+                        ok: {
+                            label: 'Fechar',
+                            className: 'btn_green'
+                        },
+                    },
+                });
             }
-
-            fr.readAsDataURL(file_path);
-        }
-        else
-        {
-            noticia.titulo = edit_newTitle.value;
-            noticia.descricao = edit_newCaption.value;
-
-            localStorage.setItem("inst_news", JSON.stringify(news));
-
-            loadNews();
-
-            $('#editNewModal').modal('hide');
-        }
-
+        })
+        
+        $('#editNewModal').modal('hide');
+    
         sessionStorage.removeItem("id_clickNew");
     }
 }
@@ -389,8 +402,26 @@ function editNew()
 
 function deleteNew(newid)
 {
-    news[instId_Clicked].splice(newid, 1);
-    localStorage.setItem("inst_news", JSON.stringify(news));
+    $.ajax({
 
-    loadNews();
+        async: false,
+        url: 'http://localhost:6587/news/delete/' + news[newid].id,
+        method: 'GET',
+
+        success: function(result, json, data) { if(load_newsData() == 200) load_newsInfo(); },
+        error: function(req, status, error) {
+                
+            bootbox.alert({
+                closeButton: false,
+                message: `Ocorreu um erro ao deletar a notícia.`,
+                size: 'small',
+                buttons: {
+                    ok: {
+                        label: 'Fechar',
+                        className: 'btn_green'
+                    },
+                },
+            });
+        }
+    })
 }

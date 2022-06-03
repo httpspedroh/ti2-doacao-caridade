@@ -141,87 +141,72 @@ function reg_clickBtn()
         event.preventDefault();
 
         let reg_nameInput = document.getElementById('reg_name'),
-            reg_logoFile = document.getElementById('reg_logo'),
             reg_catSelect = document.getElementById('reg_categoria'),
             reg_endInput = document.getElementById('reg_endereco'),
             reg_telInput = document.getElementById('reg_telefone'),
             reg_descInput = document.getElementById('reg_descricao');
         
-        let file_path = reg_logoFile.files[0];
-        let fr = new FileReader();
+        $('#registerModal').modal('hide');
 
-        fr.onloadend = function() 
-        {
-            // news.push([]);
+        username = reg_userInput.value;
+        name = reg_nameInput.value;
+        password = reg_passInput.value;
+        image_url = 'assets/images/inst-profile/inst_' + (Math.floor(Math.random() * 9) + 1) + '.png';
+        category = reg_catSelect.value;
+        address = reg_endInput.value;
+        phone = reg_telInput.value;
+        description = reg_descInput.value;
+    
+        $.ajax({
+    
+            url: 'http://localhost:6587/institutions/insert',
+            method: 'POST',
+            data: {
+                username,
+                name,
+                password,
+                image_url,
+                category,
+                address,
+                phone,
+                description
+            },
+    
+            success: function(result, json, data) { 
+                
+                let inst = inst_searchByUser(username);
 
-            // localStorage.setItem("inst_news", JSON.stringify(news));
+                setUserLogged(inst.id);
 
-            // ------------- //
-
-            $('#registerModal').modal('hide');
-
-            username = reg_userInput.value;
-            name = reg_nameInput.value;
-            password = reg_passInput.value;
-            image_url = 'assets/images/inst-profile/inst_' + (Math.floor(Math.random() * 9) + 1) + '.png';
-            category = reg_catSelect.value;
-            address = reg_endInput.value;
-            phone = reg_telInput.value;
-            description = reg_descInput.value;
-        
-            $.ajax({
-        
-                url: 'http://localhost:6587/institutions/insert',
-                method: 'POST',
-                data: {
-                    username,
-                    name,
-                    password,
-                    image_url,
-                    category,
-                    address,
-                    phone,
-                    description
-                },
-        
-                success: function(result, json, data) { 
-                    
-                    let inst = inst_searchByUser(username);
-
-                    setUserLogged(inst.id);
-
-                    bootbox.alert({
-                        closeButton: false,
-                        message: `Usuário criado e logado com sucesso.`,
-                        size: 'small',
-                        callback: function(){ location.href = '/'; },
-                        buttons: {
-                            ok: {
-                                label: 'Fechar',
-                                className: 'btn_green'
-                            },
+                bootbox.alert({
+                    closeButton: false,
+                    message: `Usuário criado e logado com sucesso.`,
+                    size: 'small',
+                    callback: function(){ location.href = '/'; },
+                    buttons: {
+                        ok: {
+                            label: 'Fechar',
+                            className: 'btn_green'
                         },
-                    });
-                },
-                    
-                error: function(req, status, error) {
-                    
-                    bootbox.alert({
-                        closeButton: false,
-                        message: `Ocorreu um erro ao criar um novo usuário.`,
-                        size: 'small',
-                        buttons: {
-                            ok: {
-                                label: 'Fechar',
-                                className: 'btn_green'
-                            },
+                    },
+                });
+            },
+                
+            error: function(req, status, error) {
+                
+                bootbox.alert({
+                    closeButton: false,
+                    message: `Ocorreu um erro ao criar um novo usuário.`,
+                    size: 'small',
+                    buttons: {
+                        ok: {
+                            label: 'Fechar',
+                            className: 'btn_green'
                         },
-                    });
-                }
-            })
-        }
-
-        fr.readAsDataURL(file_path);
+                    },
+                });
+            }
+        })
     }
 }
 
